@@ -11,6 +11,7 @@ The parallel algorithm of LU decomposition refers to page 12 of https://courses.
 
 __global__ void Paralled_kernel(double* As, int* minij_matrix, int k_iter, int N) {
 	/*
+	* This kernel is applied to each As[i][j]
 		params: 
 			As: the matrix stores the L and U component, which is updated iterately.
 			k_iter: the k-th iteration of each kernel.
@@ -111,7 +112,7 @@ int main(int argc, char *argv[]){
 
 	// Step 2:
 	for (int k = 0; k <= N - 1; k++) {
-		Paralled_kernel << <grid, block >> > (d_As, d_minij_matrix, k, N);
+		Paralled_kernel << <grid, block >> > (d_As, d_minij_matrix, k, N);  // This kernel is applied to each As[i][j]
 	}
 
 	cudaMemcpy(h_As, d_As, sizeof(double) * N * N, cudaMemcpyDeviceToHost);
