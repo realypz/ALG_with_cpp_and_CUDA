@@ -3,10 +3,10 @@ The parallel algorithm of LU decomposition refers to page 12 of https://courses.
 */
 
 #include "cuda_runtime.h"
-#include "device_launch_parameters.h"
+//#include "device_launch_parameters.h"
 #include <stdio.h>
 #include <cstdlib>
-#include <time.h>
+//#include <time.h>
 #include <iostream>
 
 __global__ void Paralled_kernel(double* As, int* minij_matrix, int k_iter, int N) {
